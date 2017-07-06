@@ -8,7 +8,7 @@ RUN curl https://download.newrelic.com/548C16BF.gpg | apt-key add - \
 
 #RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y --no-install-recommends --enable-calendar \
+RUN apt-get update && apt-get install -y --enable-calendar \
         git \
         locales \
         libmcrypt-dev \

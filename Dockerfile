@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         newrelic-php5 \
         zip \
         unzip \
-        calendar \
+        php-calendar \
     && docker-php-ext-install -j$(nproc) mcrypt mbstring pdo pdo_mysql mysqli \
     && a2enmod rewrite \
     && apt-get autoremove -y && apt-get clean \

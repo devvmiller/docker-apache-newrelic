@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zip \
         unzip \
         php-calendar \
+        cron \
     && docker-php-ext-install -j$(nproc) mcrypt mbstring pdo pdo_mysql mysqli \
     && a2enmod rewrite \
     && apt-get autoremove -y && apt-get clean \

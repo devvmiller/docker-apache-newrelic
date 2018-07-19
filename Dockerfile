@@ -7,12 +7,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       git \
       locales \
       libmcrypt-dev \
+      libpng-dev \
       zip \
       unzip \
       cron \
   && a2enmod rewrite \
   && apt-get autoremove -y && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+#GD for pdf generate
+RUN docker-php-ext-install gd
 
 # database
 RUN docker-php-ext-install \

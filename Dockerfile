@@ -15,6 +15,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && apt-get autoremove -y && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+#install Imagemagick & PHP Imagick ext
+RUN apt-get update && apt-get install -y \
+        libmagickwand-dev --no-install-recommends
+
+RUN pecl install imagick && docker-php-ext-enable imagick
+
 #GD for pdf generate
 RUN docker-php-ext-install gd
 

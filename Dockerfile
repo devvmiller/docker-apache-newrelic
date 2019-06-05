@@ -8,9 +8,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       locales \
       libmcrypt-dev \
       libpng-dev \
+      libzip-dev \
       zip \
       unzip \
       cron \
+      nano \
+      vim \
+      nodejs \
+      build-essential \
+      curl \
+      gnupg \
   && a2enmod rewrite \
   && apt-get autoremove -y && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -34,6 +41,10 @@ RUN docker-php-ext-install \
 RUN docker-php-ext-install \
   gettext \
   mbstring
+
+# zip (https://stackoverflow.com/a/48700777/6556519)
+RUN docker-php-ext-configure zip --with-libzip \
+  && docker-php-ext-install zip
 
 # PECL
 RUN pecl install -o -f redis \

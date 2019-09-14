@@ -1,30 +1,30 @@
-FROM php:7.2.4-apache
+FROM php:7.3.9-apache
 
 ENV TERM xterm-256color
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      git \
-      locales \
-      libmcrypt-dev \
-      libpng-dev \
-      libzip-dev \
-      zip \
-      unzip \
-      cron \
-      nano \
-      vim \
-      nodejs \
-      build-essential \
-      curl \
-      gnupg \
+  git \
+  locales \
+  libmcrypt-dev \
+  libpng-dev \
+  libzip-dev \
+  zip \
+  unzip \
+  cron \
+  nano \
+  vim \
+  nodejs \
+  build-essential \
+  curl \
+  gnupg \
   && a2enmod rewrite \
   && apt-get autoremove -y && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #install Imagemagick & PHP Imagick ext
 RUN apt-get update && apt-get install -y \
-        libmagickwand-dev --no-install-recommends
+  libmagickwand-dev --no-install-recommends
 
 RUN pecl install imagick && docker-php-ext-enable imagick
 
@@ -48,8 +48,8 @@ RUN docker-php-ext-configure zip --with-libzip \
 
 # PECL
 RUN pecl install -o -f redis \
-&&  rm -rf /tmp/pear \
-&&  docker-php-ext-enable redis
+  &&  rm -rf /tmp/pear \
+  &&  docker-php-ext-enable redis
 
 RUN dpkg-reconfigure locales \
   && locale-gen C.UTF-8 \
